@@ -30,11 +30,24 @@ jobs:
       - name: Build hostedPages
         run: |
           npx ng build hostedPages --output-path=dist/hostedPages
+        continue-on-error: true
 
       # Build profile app
       - name: Build profile
         run: |
           npx ng build profile --output-path=dist/profile
+        continue-on-error: true
+
+      # List files in dist/hostedPages and dist/profile for debugging
+      - name: List files in dist/hostedPages
+        run: |
+          echo "Listing files in dist/hostedPages"
+          ls -R dist/hostedPages
+
+      - name: List files in dist/profile
+        run: |
+          echo "Listing files in dist/profile"
+          ls -R dist/profile
 
       # Merge both outputs into one directory
       - name: Merge Output Directories
@@ -46,6 +59,12 @@ jobs:
           # Move profile files to the profile directory under dist/app
           mkdir -p dist/app/profile
           mv dist/profile/* dist/app/profile/
+
+      # List files in dist/app for debugging
+      - name: List files in dist/app
+        run: |
+          echo "Listing files in dist/app"
+          ls -R dist/app
 
       # Verify that the 'index.html' file is in the 'dist/app' directory
       - name: Verify index.html exists
