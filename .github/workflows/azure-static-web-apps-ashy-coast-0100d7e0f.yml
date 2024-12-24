@@ -40,6 +40,7 @@ jobs:
       - name: Merge Output Directories
         run: |
           mkdir -p dist/app
+          mkdir -p dist/app/profile
           mv dist/hostedPages/* dist/app/
           mv dist/profile/* dist/app/profile/
 
