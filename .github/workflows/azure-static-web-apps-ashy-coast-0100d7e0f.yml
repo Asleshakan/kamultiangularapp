@@ -54,7 +54,7 @@ jobs:
           action: "upload"
           app_location: "dist/app" # This is where the final merged output is stored
           api_location: "" # Optional, if you have an API, specify the path here. Leave empty if not.
-          output_location: "dist/app" # Optional, if your build output is already in app_location
+          output_location: "dist" # Optional, if your build output is already in app_location
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
