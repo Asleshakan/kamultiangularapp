@@ -1,0 +1,26 @@
+{
+    "routes": [
+      {
+        "route": "/hostedPages/*",
+        "rewrite": "/hostedPages/index.html"
+      },
+      {
+        "route": "/profile/*",
+        "rewrite": "/profile/index.html"
+      }
+    ],
+    "navigationFallback": {
+      "rewrite": "/index.html",
+      "exclude": [
+        "/hostedPages/*.js",
+        "/hostedPages/*.css",
+        "/profile/*.js",
+        "/profile/*.css"
+      ]
+    },
+    "mimeTypes": {
+      ".js": "application/javascript",
+      ".css": "text/css"
+    }
+  }
+  
