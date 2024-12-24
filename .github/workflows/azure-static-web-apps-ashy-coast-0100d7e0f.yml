@@ -40,6 +40,7 @@ jobs:
       - name: Merge Output Directories
         run: |
           mkdir -p dist/app
+          # Create the profile directory inside dist/app if it doesn't exist
           mkdir -p dist/app/profile
           mv dist/hostedPages/* dist/app/
           mv dist/profile/* dist/app/profile/
@@ -51,7 +52,7 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ASHY_COAST_0100D7E0F }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for GitHub integrations (i.e., PR comments)
           action: "upload"
-          app_location: "/" # This is where the final merged output is stored
+          app_location: "dist/app" # This is where the final merged output is stored
           api_location: "" # Optional, if you have an API, specify the path here. Leave empty if not.
           output_location: "dist/app" # Optional, if your build output is already in app_location
 
