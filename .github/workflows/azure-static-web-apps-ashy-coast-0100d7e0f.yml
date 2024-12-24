@@ -37,7 +37,11 @@ jobs:
           npx ng build profile --output-path=dist/profile
 
       # Merge both outputs into one directory
-
+      - name: Merge Output Directories
+        run: |
+          mkdir -p dist/app
+          mv dist/hostedPages/* dist/app/
+          mv dist/profile/* dist/app/profile/
 
       # Deploy to Azure Static Web Apps
       - name: Deploy to Azure Static Web Apps
@@ -48,7 +52,7 @@ jobs:
           action: "upload"
           app_location: "/" # This is where the final merged output is stored
           api_location: "" # Optional, if you have an API, specify the path here. Leave empty if not.
-          output_location: "dist" # Optional, if your build output is already in app_location
+          output_location: "dist/app" # Optional, if your build output is already in app_location
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
